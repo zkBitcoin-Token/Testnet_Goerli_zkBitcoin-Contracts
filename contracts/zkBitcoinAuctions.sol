@@ -5,7 +5,7 @@
 //
 //  10,500,000 zkBTC tokens are Auctioned off over 100 years in this contract! In the first era ~5,000,000 are auctioned and half every era after!
 //
-//  Distributes 32,768 zkBTC tokens every 12-25 days for the first era(~5 years) and halves the amount of ABAS every era after.
+//  Distributes 32,768 zkBTC tokens every 8-20 days for the first era(~5 years) and halves the amount of ABAS every era after.
 //
 // By simply sending this contract Ethereum, you will be auto entered into the current auction!
 // *You must control the wallet sending the Ethereum to retrieve your zkBTC, no sending from exchange addresses please
