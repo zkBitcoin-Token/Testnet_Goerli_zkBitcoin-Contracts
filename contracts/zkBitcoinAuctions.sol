@@ -540,6 +540,33 @@ contract zkBTCMining{
     }
 
     
+    //Gets only the days we need to withdraw on to save gas when calling WithdrawlDays (Call this by client then use that data in WithdrawlsDays to save gas
+    function DaysARRAY_WithNonZeroAmount(uint _era, uint[] memory fdays, address _member) public view returns (uint[] DaysWithNonZeroAmount)
+    {
+    	uint [] memory DaysArray;
+        uint256 stricttotal = 0;
+        for(uint256 x = 0; x < fdays.length; x++)
+        {
+            if (_era < currentEra) {                                                                          // Allow if in previous Era
+                
+                uint memberUnits = mapEraDay_MemberUnits[_era][fdays[x]][_member];
+                if (memberUnits!= 0) {
+                    DaysArray.push(x);
+                }
+            } else if (_era == currentEra) {                                                                  // Handle if in current Era
+                if (fdays[x] < currentDay) {                                                                      // Allow only if in previous Day
+                    uint memberUnits = mapEraDay_MemberUnits[_era][fdays[x]][_member];
+                    if (memberUnits!= 0) {
+                        DaysArray.push(x);
+                    }
+                }
+            } 
+        }
+    
+        return  DaysArray;
+    }
+
+    
     //Withdraws All days in era for member
     function WithdrawlsDays(uint _era, uint[] memory fdays, address _member) public returns (bool success)
     {

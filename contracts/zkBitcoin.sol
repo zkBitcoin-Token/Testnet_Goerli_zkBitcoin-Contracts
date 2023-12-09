@@ -559,14 +559,17 @@ contract zkBitcoin is Ownable, ERC20Permit {
 		reward_amount = 40 * 10**18;
 	    	rewardEra = 0;
 		tokensMinted = 0;
-		epochCount = 0;
-		epochOld = 0;
 		multipler = address(this).balance / (1 * 10 ** 18); 	
 		Token2Per = (2** rewardEra) * address(this).balance / (250000 + 250000*(multipler)); //aimed to give about 400 days of reserves
 
 	    	miningTarget = _MAXIMUM_TARGET.div(1000);
-		latestDifficultyPeriodStarted2 = block.timestamp;
 	    	_startNewMiningEpoch();
+
+		epochCount = 0;
+		epochOld = 0;
+		latestDifficultyPeriodStarted2 = block.timestamp;
+		previousBlockTime = block.timestamp;
+    		lastrun = block.timestamp;
 		// Init contract variables and mint
 		 _mint(AuctionAddress2, x/2);
 
